@@ -3,38 +3,36 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
+  <title>Calculadora - UI/UX</title>
   <link rel="stylesheet" href="style.css">
-  <title>Calculadora || UI/UX</title>
 </head>
 
 <body>
-  <div class="content">
-    <div class="calculator">
-      <p class="result" id="result"></p>
-      <div class="grid-container">
-        <button class="btn ac" onclick="clean()">AC</button>
-        <button class="btn neg" onclick="backspace()"><i class="fas fa-backspace"></i></button>
-        <button class="btn special" onclick="add('/')">÷</button>
-        <button class="btn" onclick="add('7')">7</button>
-        <button class="btn" onclick="add('8')">8</button>
-        <button class="btn" onclick="add('9')">9</button>
-        <button class="btn special" onclick="add('*')">x</button>
-        <button class="btn" onclick="add('4')">4</button>
-        <button class="btn" onclick="add('5')">5</button>
-        <button class="btn" onclick="add('6')">6</button>
-        <button class="btn special" onclick="add('-')">-</button>
-        <button class="btn" onclick="add('1')">1</button>
-        <button class="btn" onclick="add('2')">2</button>
-        <button class="btn" onclick="add('3')">3</button>
-        <button class="btn special" onclick="add('+')">+</button>
-        <button class="btn zero" onclick="add('0')">0</button>
-        <button class="btn" onclick="add('.')">.</button>
-        <button class="btn igual" onclick="confirm()">=</button>
-      </div>
+  <div class="modal-content">
+    <h1>Calculadora - UI/UX</h1>
+    <form id="inputForm">
+
+      <input type="number" id="primeiroNumero" placeholder="1° número positivo" required>
+      <input type="number" id="segundoNumero" placeholder="2° número positivo" required>
+      <select id="operacao">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+      <button type="submit">Calcular</button>
+    </form>
+  </div>
+
+
+  <div id="resultadoModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">×</span>
+      <p id="resultadoTexto"></p>
     </div>
   </div>
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
+
+</html>
