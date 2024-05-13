@@ -1,19 +1,22 @@
-document.getElementById("inputForm").addEventListener("submit", function (event) {
-  event.preventDefault();
-  const primeiroNumero = parseFloat(document.getElementById("primeiroNumero").value);
-  const segundoNumero = parseFloat(document.getElementById("segundoNumero").value);
-  const operacao = document.getElementById("operacao").value;
-  if (isNaN(primeiroNumero) || isNaN(segundoNumero) || primeiroNumero < 0 || segundoNumero < 0) {
-    alert("Por favor, insira números positivos.");
+document.getElementById("inputForm").addEventListener("submit", function (e
+) {
+  e.preventDefault();
+
+  const firstNumber = parseFloat(document.getElementById("firstNumber").value);
+  const secondNumber = parseFloat(document.getElementById("secondNumber").value);
+  const operator = document.getElementById("operator").value;
+  
+  if (isNaN(firstNumber) || isNaN(secondNumber) || firstNumber < 0 || secondNumber < 0) {
+    alert("Insira apenas números positivos!");
     return;
   }
-  const resultado = calcular(primeiroNumero, segundoNumero, operacao);
-  mostrarResultado(resultado);
-  fecharModalEntrada();
+  
+  const result = calculate(firstNumber, secondNumber, operator);
+  showResult(result);
 });
 
-function calcular(a, b, operacao) {
-  switch (operacao) {
+function calculate(a, b, oper) {
+  switch (oper) {
     case "+":
       return a + b;
     case "-":
@@ -21,33 +24,27 @@ function calcular(a, b, operacao) {
     case "*":
       return a * b;
     case "/":
-      return b !== 0 ? a / b : "Não é possível  dividir por zero";
+      return b !== 0 ? a / b : "Não é possível dividir por zero";
     default:
       return "Operação inválida";
   }
 }
 
-function abrirModalEntrada() {
-  document.getElementById("entradaModal").style.display = "block";
-}
 
-function fecharModalEntrada() {
-  document.getElementById("entradaModal").style.display = "none";
-}
+function showResult(result) {
+  const resultElement = document.getElementById("text-result");
+  resultElement.textContent = `Resultado: ${result}`;
 
-function mostrarResultado(resultado) {
-  document.getElementById("resultadoTexto").textContent = `Resultado: ${resultado}`;
-  document.getElementById("resultadoModal").style.display = "block";
-}
+  const modalElement = document.getElementById("modal-result");
+  modalElement.style.display = "block";
 
-window.onclick = function (event) {
-  if (event.target.classList.contains("modal")) {
-    event.target.style.display = "none";
-  }
-};
-
-document.querySelectorAll(".close-button").forEach((button) => {
-  button.onclick = function () {
-    button.closest(".modal").style.display = "none";
+  modalElement.onclick = function (e) {
+    if (e.target.classList.contains("modal")) {
+      modalElement.style.display = "none";
+    }
   };
-});
+
+  document.querySelector(".close-button").onclick = function () {
+    modalElement.style.display = "none";
+  };
+}
